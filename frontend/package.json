@@ -13,5 +13,8 @@
     "@auth0/auth0-react": "^2.0.0",
     "axios": "^1.4.0",
     "react-scripts": "5.0.1"
-  }
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
