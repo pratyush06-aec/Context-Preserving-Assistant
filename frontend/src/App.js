@@ -19,19 +19,46 @@ function App() {
   };
 
   return (
-    <div style={{ padding: 20, fontFamily: 'Arial, sans-serif' }}>
-      <h2>Auth0 Assistant0 - Demo</h2>
-      {!isAuthenticated && <button onClick={() => loginWithRedirect()}>Log in</button>}
-      {isAuthenticated && <button onClick={() => logout({ returnTo: window.location.origin })}>Log out</button>}
-      <div style={{ marginTop: 10 }}>
-        <strong>User:</strong> {isAuthenticated ? (user.name || user.email) : 'Not logged in'}
+    <div className="glass-container">
+      <div className="header-section">
+        <div>
+          <h2>Auth0 Assistant</h2>
+          <p className="subtitle">Context-Preserving Demo</p>
+        </div>
+        <div>
+          {!isAuthenticated ? (
+            <button className="btn btn-primary" onClick={() => loginWithRedirect()}>Log in</button>
+          ) : (
+            <button className="btn" onClick={() => logout({ returnTo: window.location.origin })}>Log out</button>
+          )}
+        </div>
       </div>
-      <div style={{ marginTop: 20 }}>
-        <button onClick={() => callProtected('/api/profile')}>Call First-Party API (Profile)</button>
-        <button style={{ marginLeft: 10 }} onClick={() => callProtected('/api/weather?city=London')}>Call Weather API</button>
-        <button style={{ marginLeft: 10 }} onClick={() => callProtected('/api/demo-conversation')}>Demo Conversation</button>
+
+      <div className="user-info">
+        <div className="avatar">
+          {isAuthenticated && user ? (user.name ? user.name[0].toUpperCase() : 'U') : '?'}
+        </div>
+        <div>
+          <strong>{isAuthenticated ? (user.name || user.email) : 'Not logged in'}</strong>
+          {isAuthenticated && <div style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>{user.email}</div>}
+        </div>
       </div>
-      <pre style={{ marginTop: 20, background: '#f6f6f6', padding: 10, maxHeight: 400, overflow: 'auto' }}>{result}</pre>
+
+      {isAuthenticated && (
+        <div className="action-grid">
+          <button className="btn btn-primary" onClick={() => callProtected('/api/profile')}>Call Profile API</button>
+          <button className="btn btn-primary" onClick={() => callProtected('/api/weather?city=London')}>Call Weather API</button>
+          <button className="btn btn-primary" onClick={() => callProtected('/api/demo-conversation')}>Demo Conversation</button>
+        </div>
+      )}
+
+      {result && (
+        <div className="result-container">
+          <div className="result-content">
+            {result}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

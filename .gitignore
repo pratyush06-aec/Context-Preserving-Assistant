@@ -2,6 +2,8 @@
 backend/.env
 frontend/.env
 .env
+rewrite_env_example.ps1
+
 
 # node modules
 backend/node_modules/
