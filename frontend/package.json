@@ -1,0 +1,17 @@
+{
+  "name": "auth0-assistant-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@auth0/auth0-react": "^2.0.0",
+    "axios": "^1.4.0",
+    "react-scripts": "5.0.1"
+  }
+}
