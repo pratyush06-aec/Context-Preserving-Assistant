@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.png" alt="Context-Preserving Assistant Logo" width="150"/>
+  <img src="assets/logo.png" alt="Context-Preserving Assistant Logo" width="150"/>
 </div>
 
 # Context-Preserving Assistant - Auth0 Minimal Scaffold
