@@ -1,4 +1,12 @@
-# Auth0 Assistant0 - Minimal Scaffold
+<div align="center">
+  <img src="logo.png" alt="Context-Preserving Assistant Logo" width="150"/>
+</div>
+
+# Context-Preserving Assistant - Auth0 Minimal Scaffold
+
+🚀 **Live Deployment Links:**
+- **Frontend**: [https://context-preserving-assistant.vercel.app/](https://context-preserving-assistant.vercel.app/)
+- **Backend API**: [https://localhost:3000/](https://localhost:3000/)
 
 This repository contains a minimal scaffold for a full-stack personal assistant that demonstrates:
 
@@ -13,6 +21,32 @@ This is a starter/mentorship scaffold — follow the steps below to configure Au
 
 - `backend/` - Express API
 - `frontend/` - React app using `@auth0/auth0-react`
+
+## System Architecture
+
+The following diagram illustrates the authentication and data flow of the Context-Preserving Assistant:
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant F as Frontend (React)
+    participant A as Auth0 (IdP)
+    participant B as Backend (Express)
+    participant W as Weather API
+
+    U->>F: Clicks Login
+    F->>A: Redirect to Auth0 Universal Login
+    A-->>U: Prompts for Credentials
+    U->>A: Provides Credentials
+    Note over A: Executes Rules/Actions<br/>(Sets preferred_location claim)
+    A-->>F: Returns JWT (Access Token)
+    F->>B: GET /api/weather<br/>Authorization: Bearer <JWT>
+    Note over B: Validates JWT signature<br/>Extracts claims
+    B->>W: GET weather data<br/>(Uses Server-side API Key)
+    W-->>B: Returns JSON weather data
+    B-->>F: Returns Aggregated Data (Profile + Weather)
+    F-->>U: Displays Result in UI
+```
 
 ## Quickstart
 
