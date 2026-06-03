@@ -1,1 +1,17 @@
-.env.example
+# local environment files
+backend/.env
+frontend/.env
+.env
+
+# node modules
+backend/node_modules/
+frontend/node_modules/
+
+# React build output
+frontend/build/
+
+# OS artifacts
+.DS_Store
+
+# npm logs
+npm-debug.log*

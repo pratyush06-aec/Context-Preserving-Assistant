@@ -20,8 +20,20 @@ This is a starter/mentorship scaffold — follow the steps below to configure Au
    - Note your Auth0 Domain, Client ID, and API Audience.
    - In the API, add an identifier (this becomes `AUTH0_AUDIENCE`).
    - Add an application callback URL (e.g., `http://localhost:3000`).
+   - Add `http://localhost:3000` to Allowed Web Origins and Allowed Logout URLs.
+   - In the API settings, add a `read:profile` or similar scope if you want to extend the demo later.
 
-2. Create an OpenWeatherMap API key (or another weather provider) and note it.
+2. Add the following Auth0 Rule or Action to enrich tokens with a custom user setting (preferred location):
+   - This example adds `https://example.com/preferred_location` to the ID/access token.
+   - In the Auth0 Dashboard, go to Actions → Flows → Login, then add a custom action with this logic:
+     ```js
+     exports.onExecutePostLogin = async (event, api) => {
+       api.accessToken.setCustomClaim('https://example.com/preferred_location', 'London');
+     };
+     ```
+   - Replace `'London'` with the user-specific location you want to preserve in the session.
+
+3. Create an OpenWeatherMap API key (or another weather provider) and note it.
 
 3. Copy env examples and fill values:
 
@@ -56,6 +68,12 @@ npm start
 ```
 
 5. Open `http://localhost:3000`, log in via Auth0, then click the demo buttons to call the protected first-party API and the weather endpoint. The frontend fetches an access token using the logged-in user session and sends it to the backend; the backend validates the token and then calls the weather provider using the server-side API key (simulated Token Vault).
+
+6. To validate the backend service quickly, start the backend server and run:
+```powershell
+cd backend
+npm test
+```
 
 ## Notes & Next steps
 
