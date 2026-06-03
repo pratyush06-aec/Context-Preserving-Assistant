@@ -15,6 +15,14 @@ This repository contains a minimal scaffold for a full-stack personal assistant 
 - A third-party weather API call made from the backend using a server-side secret (simulated Token Vault)
 - An example demo endpoint that references a user-specific setting then calls the weather API
 
+## Detailed Overview
+
+The **Context-Preserving Assistant** is a modern, full-stack application designed to showcase how to maintain user context (like preferences, location, or customized settings) securely across a distributed system. 
+
+Often, personal assistants need to communicate with various third-party services (like weather, news, or calendar APIs) on behalf of the user. Doing this securely means the frontend should never hold sensitive third-party API keys. Instead, the frontend authenticates the user via **Auth0** and receives a secure JWT (JSON Web Token). This token is then passed to our **Express Backend**, which acts as a secure proxy. The backend validates the user's identity, extracts any custom context (such as a preferred city injected into the token via Auth0 Actions), and securely communicates with third-party APIs using server-side secrets. 
+
+This architecture ensures that user context is preserved seamlessly while maintaining enterprise-grade security for API credentials.
+
 This is a starter/mentorship scaffold — follow the steps below to configure Auth0 and run the demo.
 
 ## Layout
